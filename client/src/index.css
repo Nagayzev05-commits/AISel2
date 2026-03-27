@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* MarketAI — Electric Indigo on deep navy. Energetic SaaS palette for sellers */
+    --background: 226 30% 97%;
+    --foreground: 226 35% 12%;
+
+    --card: 226 20% 99%;
+    --card-foreground: 226 35% 12%;
+
+    --popover: 226 20% 99%;
+    --popover-foreground: 226 35% 12%;
+
+    --primary: 243 75% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 20% 92%;
+    --secondary-foreground: 226 35% 20%;
+
+    --muted: 226 15% 93%;
+    --muted-foreground: 226 12% 52%;
+
+    --accent: 156 72% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 15% 87%;
+    --input: 226 15% 87%;
+    --ring: 243 75% 58%;
+
+    --radius: 0.6rem;
+
+    /* Chart colors */
+    --chart-1: 243 75% 58%;
+    --chart-2: 156 72% 42%;
+    --chart-3: 38 92% 55%;
+    --chart-4: 330 70% 55%;
+    --chart-5: 200 80% 50%;
+  }
+
+  .dark {
+    --background: 226 35% 7%;
+    --foreground: 226 10% 92%;
+
+    --card: 226 30% 10%;
+    --card-foreground: 226 10% 92%;
+
+    --popover: 226 30% 10%;
+    --popover-foreground: 226 10% 92%;
+
+    --primary: 243 75% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 25% 16%;
+    --secondary-foreground: 226 10% 80%;
+
+    --muted: 226 25% 16%;
+    --muted-foreground: 226 10% 55%;
+
+    --accent: 156 65% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 20% 18%;
+    --input: 226 20% 18%;
+    --ring: 243 75% 65%;
+
+    --chart-1: 243 75% 65%;
+    --chart-2: 156 65% 50%;
+    --chart-3: 38 92% 60%;
+    --chart-4: 330 70% 60%;
+    --chart-5: 200 80% 60%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'General Sans', 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-muted; }
+::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+
+/* Gradient accents */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(243 75% 58%), hsl(280 70% 60%));
+}
+.gradient-success {
+  background: linear-gradient(135deg, hsl(156 72% 42%), hsl(180 70% 40%));
+}
+
+/* Sidebar active */
+.sidebar-item-active {
+  @apply bg-primary/10 text-primary font-medium;
+}
+
+/* Card hover */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+}
+
+/* Status badges */
+.status-active { @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400; }
+.status-draft { @apply bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400; }
+.status-paused { @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400; }
+.status-processing { @apply bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400; }
+.status-error { @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+
+/* AI pulse animation */
+@keyframes ai-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.ai-pulse { animation: ai-pulse 1.5s ease-in-out infinite; }
+
+/* Upload zone */
+.upload-zone {
+  @apply border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer transition-all duration-200;
+}
+.upload-zone:hover, .upload-zone.dragging {
+  @apply border-primary/50 bg-primary/5;
+}
