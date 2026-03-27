@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useHashLocation } from "wouter/use-hash-location";
 import { setToken, clearToken } from "../lib/queryClient";
 
 interface AuthUser { id: number; email: string; name: string; plan: string; }
@@ -10,7 +11,7 @@ const Ctx = createContext<AuthCtx>({ user: null, login: () => {}, logout: () => 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [ready, setReady] = useState(false);
-  const [, navigate] = useLocation();
+  const [location, navigate] = useHashLocation();
 
   useEffect(() => {
     setReady(true);
@@ -18,9 +19,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!ready) return;
-    const hash = window.location.hash.replace("#", "") || "/";
-    if (!user && hash !== "/auth") navigate("/auth");
-  }, [ready, user]);
+    if (!user && location !== "/auth") navigate("/auth");
+  }, [ready, user, location]);
 
   const login = (u: AuthUser, token: string) => {
     setToken(token);
